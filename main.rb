@@ -34,7 +34,17 @@ end
 p fib_recursive(8, 8)
 
 
+def merge_sort(array)
+  len = array.length
+  if len == 1
+    return array
+  else
+    #test = merge_sort(array)
+    right = array[0...len/2]
+    left = array[len/2..-1]
+    p right
+    p left
+  end
+end 
 
-
-
-
+p merge_sort([9,4])
