@@ -16,7 +16,6 @@ end
 
 p fib(8, Array.new)
 
-
 def fib_recursive(n, size)
   num_array = []
   if n == 0
@@ -33,18 +32,47 @@ end
 
 p fib_recursive(8, 8)
 
-
 def merge_sort(array)
   len = array.length
-  if len == 1
+  if len < 2
     return array
-  else
-    #test = merge_sort(array)
-    right = array[0...len/2]
-    left = array[len/2..-1]
-    p right
-    p left
+  end 
+  left = array[0...len/2]
+  right = array[len/2..-1]
+  
+  merge_sort(left)
+  merge_sort(right)
+
+  i = 0
+  j = 0
+  k = 0
+
+  while i < left.length && j  < right.length
+    if left[i] < right[j]
+      array[k] = left[i]
+      i += 1
+    else
+      array[k] = right[j]
+      j += 1
+    end
+    k += 1
   end
+  while i < left.length
+    array[k] = left[i]
+    i += 1
+    k += 1
+  end
+
+  while j < right.length
+    array[k] = right[j]
+    j += 1
+    k += 1 
+  end 
+  array
 end 
 
-p merge_sort([9,4])
+p merge_sort([9,4,3,5,6,7,1])
+
+random_numbers = Array.new(100) { rand(1..1000) }
+p random_numbers
+p merge_sort(random_numbers)
